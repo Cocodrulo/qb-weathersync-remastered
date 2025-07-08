@@ -109,4 +109,9 @@ RegisterNetEvent('qb-weathersync:ChangeWeather', function(args)
     if success then StartNewWeatherThread() end
 end)
 
-StartNewWeatherThread()
+CreateThread(function ()
+    while not state.weather do
+        Wait(1000)
+    end
+    StartNewWeatherThread()
+end)
